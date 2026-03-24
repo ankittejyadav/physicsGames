@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #070e1b;
+    color: #e2e8fb;
+    font-family: "Inter", sans-serif;
+    overflow: hidden;
+  }
+}
+
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+}
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px)
+}
+.galaxy-bg-container {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at center, #1a2a44 0%, #070e1b 100%);
+    overflow: hidden
+}
+.galaxy-base {
+    position: absolute;
+    inset: -5%;
+    background-image: url('/supermariogalaxywiiustage.png');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.9) contrast(1.1);
+    animation: drift 60s ease-in-out infinite alternate
+}
+.star-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none
+}
+.floating-particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    filter: blur(1px);
+    animation: float var(--duration) linear infinite;
+    top: var(--top);
+    left: var(--left);
+    width: var(--size);
+    height: var(--size);
+    box-shadow: 0 0 10px white
+}
+.star-bit {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #fcdc00, #ff9d00);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 8px #fcdc00);
+    animation: starBitPath var(--duration) linear infinite;
+    top: var(--top);
+    left: var(--left)
+}
+@keyframes drift {
+    from {
+        transform: scale(1.05) translate(-1%, -1%);
+    } to {
+        transform: scale(1.1) translate(1%, 1%);
+    }
+}
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    } 20% {
+        opacity: 0.6;
+    } 80% {
+        opacity: 0.6;
+    } 100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+@keyframes starBitPath {
+    0% {
+        transform: scale(0) translate(0, 0);
+        opacity: 0;
+    } 10% {
+        opacity: 1;
+        transform: scale(1);
+    } 90% {
+        opacity: 1;
+    } 100% {
+        transform: scale(0.5) translate(var(--tx), var(--ty));
+        opacity: 0;
+    }
+}
+.star-hit-effect {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #0ff;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    animation: burst 0.6s ease-out forwards;
+    box-shadow: 0 0 20px #0ff
+}
+@keyframes burst {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    } 100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+.reticle-corner {
+    width: 12px;
+    height: 12px;
+    border-color: #c1fffe;
+    position: absolute
+}

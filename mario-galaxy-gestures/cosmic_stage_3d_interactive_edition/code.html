@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cosmic Gesture | The Celestial Observer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>body {
+    background-color: #070e1b;
+    color: #e2e8fb;
+    font-family: "Inter", sans-serif;
+    overflow: hidden
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px)
+    }
+.galaxy-bg-container {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at center, #1a2a44 0%, #070e1b 100%);
+    overflow: hidden
+    }
+.galaxy-base {
+    position: absolute;
+    inset: -5%;
+    background-image: url(https://lh3.googleusercontent.com/aida/ADBb0uik3eX0X8fyN2Ad-YPrXBouCbHfLcMo4duhVdBl8NC6QxAH8PfR-ryBQqByniN_wiLxK_fgoENYu3N_NRgANzRkh3qcxr9OcEXngGdZFUN2aMotH9YKzWc5VMdg83itB-UWKb5xWqaNN9Gh9VIm6WHaFkr0HkQCDUKKDc7rcAfD_SYgyBHSJmCCcmqeCv1fg5XmqRpofpxbvREcypyF2RB9qgK7VUtpV162eztvGE7NcWPegzzZxJ1QflLbcoZa_nxi6Mlg-Sfb);
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.8) contrast(1.1);
+    animation: drift 60s ease-in-out infinite alternate
+    }
+.star-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none
+    }
+.floating-particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    filter: blur(1px);
+    animation: float var(--duration) linear infinite;
+    top: var(--top);
+    left: var(--left);
+    width: var(--size);
+    height: var(--size);
+    box-shadow: 0 0 10px white
+    }
+.star-bit {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle, #fcdc00, #ff9d00);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 8px #fcdc00);
+    animation: starBitPath var(--duration) linear infinite;
+    top: var(--top);
+    left: var(--left)
+    }
+@keyframes drift {
+    from {
+        transform: scale(1.05) translate(-1%, -1%);
+        } to {
+        transform: scale(1.1) translate(1%, 1%);
+        }
+    }
+@keyframes float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+        } 20% {
+        opacity: 0.6;
+        } 80% {
+        opacity: 0.6;
+        } 100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+        }
+    }
+@keyframes starBitPath {
+    0% {
+        transform: scale(0) translate(0, 0);
+        opacity: 0;
+        } 10% {
+        opacity: 1;
+        transform: scale(1);
+        } 90% {
+        opacity: 1;
+        } 100% {
+        transform: scale(0.5) translate(var(--tx), var(--ty));
+        opacity: 0;
+        }
+    }
+.star-hit-effect {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #0ff;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0);
+    animation: burst 0.6s ease-out forwards;
+    box-shadow: 0 0 20px #0ff
+    }
+@keyframes burst {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+        } 100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+        }
+    }
+.reticle-corner {
+    width: 12px;
+    height: 12px;
+    border-color: #c1fffe;
+    position: absolute
+    }</style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "secondary-container": "#6d5e00",
+                "on-secondary": "#5a4e00",
+                "secondary": "#fcdc00",
+                "secondary-dim": "#ecce00",
+                "primary-dim": "#00e6e6",
+                "surface-bright": "#222c41",
+                "surface-container-lowest": "#000000",
+                "outline-variant": "#414857",
+                "background": "#070e1b",
+                "on-background": "#e2e8fb",
+                "on-surface": "#e2e8fb",
+                "surface": "#070e1b",
+                "primary": "#c1fffe",
+                "primary-container": "#00ffff",
+                "surface-container-low": "#0c1322",
+                "surface-container": "#11192a",
+                "surface-container-high": "#172031",
+                "surface-container-highest": "#1c2639"
+              },
+              fontFamily: {
+                "headline": ["Space Grotesk"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface relative min-h-screen">
+<!-- Dynamic 3D Environment Background -->
+<div class="galaxy-bg-container">
+<div class="galaxy-base"></div>
+<!-- Procedural Particles Layer -->
+<div class="star-layer">
+<div class="floating-particle" style="--top: 80%; --left: 10%; --size: 2px; --duration: 15s;"></div>
+<div class="floating-particle" style="--top: 60%; --left: 45%; --size: 3px; --duration: 20s;"></div>
+<div class="floating-particle" style="--top: 90%; --left: 80%; --size: 1px; --duration: 12s;"></div>
+<div class="floating-particle" style="--top: 30%; --left: 20%; --size: 2px; --duration: 18s;"></div>
+<div class="floating-particle" style="--top: 70%; --left: 60%; --size: 4px; --duration: 25s;"></div>
+<!-- Animated Star Bits -->
+<div class="star-bit" style="--top: 40%; --left: 50%; --duration: 4s; --tx: 300px; --ty: -200px;"></div>
+<div class="star-bit" style="--top: 60%; --left: 40%; --duration: 5s; --tx: -400px; --ty: 100px;"></div>
+</div>
+</div>
+<!-- Interaction Overlay (For Hits) -->
+<div class="fixed inset-0 z-20 pointer-events-none" id="interaction-layer"></div>
+<script>
+    // Simple script to spawn hit effects occasionally to make background feel "alive"
+    function spawnHit() {
+        const layer = document.getElementById('interaction-layer');
+        const hit = document.createElement('div');
+        hit.className = 'star-hit-effect';
+        hit.style.left = Math.random() * 100 + '%';
+        hit.style.top = Math.random() * 100 + '%';
+        if(Math.random() > 0.5) hit.style.borderColor = '#fcdc00';
+        layer.appendChild(hit);
+        setTimeout(() => hit.remove(), 600);
+    }
+    setInterval(spawnHit, 3000);
+</script>
+<!-- Overlay to slightly darken background for readability -->
+<div class="absolute inset-0 bg-black/10 pointer-events-none"></div>
+<!-- Top Navigation Shell (TopAppBar) -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-center items-center pointer-events-none">
+<nav class="rounded-full mt-6 mx-auto max-w-fit px-8 py-3 border border-white/10 bg-slate-900/40 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.5)] flex items-center gap-8 pointer-events-auto">
+<div class="text-2xl font-black tracking-widest text-cyan-400 drop-shadow-[0_0_10px_rgba(0,255,255,0.5)] font-['Space_Grotesk']">
+                Cosmic Gesture
+            </div>
+<div class="flex gap-6 items-center border-l border-white/10 pl-8">
+<a class="text-cyan-400 drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] font-bold font-['Space_Grotesk'] text-sm uppercase tracking-tighter hover:scale-105 transition-all duration-300" href="#">Main Stage</a>
+<a class="text-slate-400 hover:text-white transition-colors font-['Space_Grotesk'] text-sm uppercase tracking-tighter hover:scale-105 duration-300" href="#">Leaderboard</a>
+<a class="text-slate-400 hover:text-white transition-colors font-['Space_Grotesk'] text-sm uppercase tracking-tighter hover:scale-105 duration-300" href="#">Settings</a>
+</div>
+<div class="flex gap-4 ml-4">
+<button class="bg-primary-container text-on-primary-container px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(0,255,255,0.4)] hover:scale-105 active:scale-95 transition-all">
+                    Enable Camera
+                </button>
+<button class="bg-white/5 border border-secondary text-secondary px-5 py-2 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-secondary/10 hover:scale-105 active:scale-95 transition-all">
+                    Calibrate Pinch
+                </button>
+</div>
+</nav>
+</header>
+<!-- Side Navigation Shell (SideNavBar) -->
+<aside class="fixed left-0 top-0 h-full w-20 hover:w-64 z-40 py-10 flex flex-col bg-slate-950/20 backdrop-blur-md rounded-r-3xl my-8 border-r border-white/5 shadow-2xl transition-all duration-500 overflow-hidden group">
+<div class="px-4 mb-12 flex flex-col items-center group-hover:items-start group-hover:px-8">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 flex-shrink-0 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 border-2 border-primary overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.3)]">
+<img alt="Cosmic Pilot Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY2RmOXatU_ufc3rmpPitqs3T1lpB6d5CnXxDtBGUgvJVL-6oyu_3MW4CrLNKON70X_Z6yUJWSoWKoA1M4xnQ8hL2OoqI2hCR30qHEy_tt3PzKKHW-CO1_wQa-Hv49Dt7mu3aHQNmAEP0Svjaf4Ol45si54TOCGbXGWjmIfhDBhyKDHwLZNNR6cWngUrmy7nvBY443NLzirpCg6s-t02QNj0jOLNe7rokWqjqsFeI9s4a9PSPnFBrHcnAOu_9K0hAOv16qpH70gTc"/>
+</div>
+<div class="hidden group-hover:block whitespace-nowrap">
+<h3 class="font-headline font-black text-primary text-sm tracking-widest">Observer-01</h3>
+<p class="font-headline text-[10px] text-slate-500 uppercase tracking-widest">Rank: Star Lord</p>
+</div>
+</div>
+<button class="hidden group-hover:block w-full py-2 bg-white/5 border border-white/10 rounded-lg font-headline text-[10px] uppercase tracking-[0.2em] text-white hover:bg-white/10 transition-all">
+                View Stats
+            </button>
+</div>
+<nav class="flex-1 flex flex-col">
+<a class="bg-cyan-500/20 text-cyan-300 border-r-4 border-cyan-400 px-6 py-4 flex items-center gap-4 group-hover:px-8 transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-headline font-bold text-xs tracking-widest uppercase hidden group-hover:inline">Home</span>
+</a>
+<a class="text-slate-400 px-6 py-4 flex items-center gap-4 group-hover:px-8 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+<span class="font-headline font-bold text-xs tracking-widest uppercase hidden group-hover:inline">Galaxy Map</span>
+</a>
+<a class="text-slate-400 px-6 py-4 flex items-center gap-4 group-hover:px-8 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-headline font-bold text-xs tracking-widest uppercase hidden group-hover:inline">Collections</span>
+</a>
+<a class="text-slate-400 px-6 py-4 flex items-center gap-4 group-hover:px-8 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-headline font-bold text-xs tracking-widest uppercase hidden group-hover:inline">Achievements</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-20 lg:ml-64 pt-32 p-12 h-screen relative flex flex-col justify-center items-center overflow-hidden">
+<!-- Right Panel: Scores -->
+<div class="fixed right-8 top-32 w-72 glass-panel bg-slate-900/30 border border-white/10 rounded-lg p-6 shadow-2xl z-30 transition-all hover:bg-slate-900/50">
+<h2 class="font-headline font-black text-xl text-white uppercase tracking-tighter mb-6 border-b border-white/10 pb-4">
+                Star Bits <span class="text-secondary drop-shadow-[0_0_5px_rgba(252,220,0,0.5)]">Collected</span>
+</h2>
+<div class="space-y-6">
+<!-- Player 1 -->
+<div class="relative group">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">rocket_launch</span>
+<span class="font-headline text-[10px] font-bold text-primary tracking-widest uppercase">Player 1</span>
+</div>
+<div class="flex gap-0.5">
+<span class="material-symbols-outlined text-[8px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[8px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[8px] text-primary">star</span>
+</div>
+</div>
+<div class="bg-surface-container-high/40 backdrop-blur-sm rounded-xl p-3 border border-primary/20 flex items-center justify-between overflow-hidden relative">
+<div class="absolute left-0 top-0 h-full w-1 bg-primary"></div>
+<span class="font-headline text-4xl font-black text-primary drop-shadow-[0_0_12px_rgba(0,255,255,0.4)] tracking-tighter">
+                            12,450
+                        </span>
+<span class="material-symbols-outlined text-primary/20 text-3xl">rocket_launch</span>
+</div>
+</div>
+<!-- Player 2 -->
+<div class="relative group">
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">pets</span>
+<span class="font-headline text-[10px] font-bold text-secondary tracking-widest uppercase">Player 2</span>
+</div>
+<div class="flex gap-0.5">
+<span class="material-symbols-outlined text-[8px] text-secondary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[8px] text-secondary">star</span>
+<span class="material-symbols-outlined text-[8px] text-secondary">star</span>
+</div>
+</div>
+<div class="bg-surface-container-high/40 backdrop-blur-sm rounded-xl p-3 border border-secondary/20 flex items-center justify-between overflow-hidden relative">
+<div class="absolute left-0 top-0 h-full w-1 bg-secondary"></div>
+<span class="font-headline text-4xl font-black text-secondary drop-shadow-[0_0_12px_rgba(252,220,0,0.4)] tracking-tighter">
+                            08,120
+                        </span>
+<span class="material-symbols-outlined text-secondary/20 text-3xl">pets</span>
+</div>
+</div>
+</div>
+<!-- Mini-Stats -->
+<div class="grid grid-cols-2 gap-3 mt-6">
+<div class="bg-white/5 rounded-lg p-2 border border-white/5">
+<p class="text-[7px] uppercase tracking-widest text-slate-400 mb-1">Accuracy</p>
+<p class="font-headline text-base font-bold text-white">94%</p>
+</div>
+<div class="bg-white/5 rounded-lg p-2 border border-white/5">
+<p class="text-[7px] uppercase tracking-widest text-slate-400 mb-1">Multiplier</p>
+<p class="font-headline text-base font-bold text-secondary">x2.5</p>
+</div>
+</div>
+</div>
+<!-- Bottom Left: Webcam Preview -->
+<div class="fixed bottom-12 left-24 z-30 group">
+<div class="relative w-56 aspect-video rounded-lg overflow-hidden glass-panel border border-primary/30 shadow-[0_0_20px_rgba(0,255,255,0.1)] group-hover:scale-105 transition-transform duration-500">
+<div class="absolute inset-0 bg-slate-800 flex items-center justify-center">
+<img class="w-full h-full object-cover grayscale opacity-40 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaLi9GhYaOSXvoFbF9qorZIbzOQUKM-iizYTStYxvJEAyCweF80XjUoEctvG5mh9KBK_xRrtUPFOF93ELVgX48ns_ywFRVzxvY_kE8kxFkJfBFfyOyb6X4dUHd3l9PPei7717bvif1AeyF0TUq-VShitrbcYvrbZWGvX8qGHzZIqD2IP0pBTs7tK785HlH8qV9kjk6SUNtq_aSiqQp_qQSN-xihj3x71EggTdF6jV0rlzUT8y0toGhuSWEj5ZwaPdDAFu1GjXyLz4"/>
+</div>
+<div class="absolute inset-4 pointer-events-none">
+<div class="reticle-corner top-0 left-0 border-t-2 border-l-2"></div>
+<div class="reticle-corner top-0 right-0 border-t-2 border-r-2"></div>
+<div class="reticle-corner bottom-0 left-0 border-b-2 border-l-2"></div>
+<div class="reticle-corner bottom-0 right-0 border-b-2 border-r-2"></div>
+</div>
+<div class="absolute bottom-2 left-3 flex items-center gap-2">
+<div class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+<span class="text-[9px] font-headline font-bold uppercase tracking-widest text-white/70">Gesture Active</span>
+</div>
+</div>
+</div>
+<!-- Centered UI -->
+<div class="z-10 flex flex-col items-center text-center max-w-2xl px-4 pointer-events-none mb-48">
+<h1 class="font-headline font-black text-6xl text-white uppercase tracking-tighter mb-4 drop-shadow-2xl">
+                Ready to <span class="text-primary italic">Launch?</span>
+</h1>
+<p class="text-white/80 font-medium leading-relaxed max-w-md drop-shadow-lg">
+                Pinch your thumb and index finger to collect Star Bits drifting in the void. Calibrate your sensors for maximum precision.
+            </p>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="fixed bottom-4 right-8 z-50 flex gap-6 items-center">
+<div class="text-[10px] uppercase tracking-widest text-slate-300 font-bold font-sans drop-shadow-md">
+            © 2124 Celestial Observer Systems
+        </div>
+<div class="h-4 w-px bg-white/20"></div>
+<div class="flex gap-6">
+<a class="text-[10px] uppercase tracking-widest font-sans text-slate-200 hover:text-yellow-400 transition-colors drop-shadow-md" href="#">Privacy Protocol</a>
+<a class="text-[10px] uppercase tracking-widest font-sans text-slate-200 hover:text-yellow-400 transition-colors drop-shadow-md" href="#">Star Charts</a>
+<a class="text-[10px] uppercase tracking-widest font-sans text-slate-200 hover:text-yellow-400 transition-colors drop-shadow-md" href="#">Support</a>
+</div>
+</footer>
+</body></html>
