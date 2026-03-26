@@ -3,7 +3,7 @@
 
 ## 1. Overview & Creative North Star
 
-This design system is built upon the Creative North Star of **"The Celestial Observer."** It is a high-fidelity interface that bridges the gap between nostalgic retro-arcade energy and cutting-edge digital translucency. By leveraging the theme of **Cosmic Glass**, the interface does not merely sit on top of the gaming experience; it floats within it, acting as a high-tech lens through which the user views the deep-space environment.
+This design system is built upon the Creative North Star of **"The Physics Explorer."** It is a high-fidelity interface that bridges the gap between nostalgic retro-arcade energy and cutting-edge digital translucency. By leveraging the theme of **Physics Glass**, the interface does not merely sit on top of the gaming experience; it floats within it, acting as a high-tech lens through which the user views the interactive environment.
 
 To break away from "standard" web templates, this system avoids rigid vertical stacking. Instead, it utilizes **intentional asymmetry**, where key UI elements might overlap or extend beyond traditional container boundaries. We favor depth, glow, and atmospheric perspective over flat, grid-locked structures. This creates a sense of kinetic energy, as if the UI is caught in the same gravitational pull as the planetary bodies it orbits.
 
@@ -14,14 +14,14 @@ To break away from "standard" web templates, this system avoids rigid vertical s
 The palette is anchored by the infinite depth of space, punctuated by high-vibrancy "Energy Tokens" that signal interaction and power.
 
 -   **The Background Role (`#070e1b`):** This isn't just a color; it’s a void. All panels must emerge from this dark navy/black base.
--   **Primary Accents (`primary`: `#c1fffe` / `primary_container`: `#00ffff`):** Representing "Rosalina Cyan," these are for high-priority interactive elements.
--   **Secondary Accents (`secondary`: `#fcdc00` / `secondary_container`: `#6d5e00`):** Representing "Power Star Yellow," these signify achievement, scores, and celebratory states.
+-   **Primary Accents (`primary`: `#c1fffe` / `primary_container`: `#00ffff`):** Representing "Deep Ocean Cyan," these are for high-priority interactive elements.
+-   **Secondary Accents (`secondary`: `#fcdc00` / `secondary_container`: `#6d5e00`):** Representing "Static Energy Yellow," these signify achievement, scores, and celebratory states.
 
 ### The "No-Line" Rule
 Sectioning must never be achieved with 1px solid borders. To define boundaries, use **background color shifts**. Use `surface_container_low` for sections resting on the main `surface`, or use `surface_bright` to highlight a focal point. Contrast is your separator, not lines.
 
 ### Surface Hierarchy & Nesting
-Think of the UI as physical layers of celestial matter. 
+Think of the UI as physical layers of experimental matter. 
 -   **Base:** `surface_dim` (#070e1b)
 -   **Level 1 (Main Panels):** `surface_container` with 60% opacity and 20px backdrop-blur.
 -   **Level 2 (Nested Items):** `surface_container_high` placed inside Level 1 to create a tactile lift.
@@ -44,10 +44,10 @@ We balance precision with playfulness. The hierarchy is designed to be highly ed
 
 ## 4. Elevation & Depth: Tonal Layering
 
-Traditional shadows feel "heavy." In a cosmic environment, light is ambient and multidirectional.
+Traditional shadows feel "heavy." In an experimental environment, light is ambient and multidirectional.
 
 -   **The Layering Principle:** Depth is achieved by "stacking" surface tiers. To make a card feel "active," move it from `surface_container_low` to `surface_container_highest`. 
--   **Ambient Shadows:** Use shadows only when an element is "orbiting" (floating above all else). Use the `on_surface` color as the shadow tint at 6% opacity with a blur radius of 32px or higher. This mimics the soft light-bleed of a nearby star.
+-   **Ambient Shadows:** Use shadows only when an element is "floating" (above all else). Use the `on_surface` color as the shadow tint at 6% opacity with a blur radius of 32px or higher. This mimics the soft light-bleed of a nearby source.
 -   **The "Ghost Border" Fallback:** If a divider is mandatory for accessibility, use the `outline_variant` token at **15% opacity**. It should feel like a faint light refraction on the edge of a glass pane, never a hard stroke.
 -   **The Glow State:** Interactive elements (buttons, icons) should use a `primary` outer glow (`box-shadow: 0 0 15px rgba(0, 255, 255, 0.4)`) to indicate they are charged with energy.
 
@@ -61,14 +61,14 @@ Traditional shadows feel "heavy." In a cosmic environment, light is ambient and 
 -   **States:** On hover, the button should "pulse" — increasing the glow radius and slightly shifting the gradient.
 
 ### Target Reticles (Interactive Motif)
-Replace standard hover states or focus indicators with a **Target Reticle**. Use the `primary` color for a four-cornered bracket motif that frames the selected element, nodding to the Star Pointer mechanics of the inspiration.
+Replace standard hover states or focus indicators with a **Target Reticle**. Use the `primary` color for a four-cornered bracket motif that frames the selected element, nodding to the precision mechanics of the inspiration.
 
 ### Cards & Lists
 -   **No Dividers:** Separate list items using the **Spacing Scale** `spacing-4` (1.4rem) or by alternating background tints between `surface_container_low` and `surface_container`.
--   **Curvature:** All cards must use `rounded-lg` (2rem) to maintain the soft, organic "Galaxy" aesthetic.
+-   **Curvature:** All cards must use `rounded-lg` (2rem) to maintain the soft, organic aesthetic.
 
-### Tooltips (Star Fragments)
--   **Style:** `surface_container_highest` with 80% opacity and a `secondary` (Power Star Yellow) "Ghost Border."
+### Tooltips (Energy Fragments)
+-   **Style:** `surface_container_highest` with 80% opacity and a `secondary` (Static Energy Yellow) "Ghost Border."
 -   **Animation:** Tooltips should float in with a slight "gravity" bounce (overshoot transition).
 
 ---
@@ -76,7 +76,7 @@ Replace standard hover states or focus indicators with a **Target Reticle**. Use
 ## 6. Do's and Don'ts
 
 ### Do
--   **Do** allow the background starfields and nebulae to peek through the UI via backdrop blurs.
+-   **Do** allow the background textures and light rays to peek through the UI via backdrop blurs.
 -   **Do** use `secondary` (Yellow) sparingly for "Success" states and "Collections" to make them feel rewarding.
 -   **Do** use asymmetrical spacing; for example, a larger `spacing-12` top margin and a `spacing-8` bottom margin to create a sense of upward lift.
 

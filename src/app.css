@@ -18,20 +18,20 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px)
 }
-.galaxy-bg-container {
+.physics-bg-container {
     position: fixed;
     inset: 0;
     z-index: -1;
     background: radial-gradient(circle at center, #1a2a44 0%, #070e1b 100%);
     overflow: hidden
 }
-.galaxy-base {
+.physics-base {
     position: absolute;
     inset: -5%;
-    background-image: url('/supermariogalaxywiiustage.png');
+    background-image: url('/physics_background.png');
     background-size: cover;
     background-position: center;
-    filter: brightness(0.9) contrast(1.1);
+    filter: brightness(0.8) contrast(1.2);
     animation: drift 60s ease-in-out infinite alternate
 }
 .star-layer {
@@ -52,7 +52,7 @@
     height: var(--size);
     box-shadow: 0 0 10px white
 }
-.star-bit {
+.energy-particle {
     position: absolute;
     width: 12px;
     height: 12px;
@@ -97,7 +97,7 @@
         opacity: 0;
     }
 }
-.star-hit-effect {
+.particle-hit-effect {
     position: absolute;
     width: 60px;
     height: 60px;

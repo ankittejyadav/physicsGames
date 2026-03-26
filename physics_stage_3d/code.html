@@ -3,7 +3,7 @@
 <html class="dark" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Cosmic Gesture | The Celestial Observer</title>
+<title>Physics Games | Interactive Experiments</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -20,14 +20,14 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px)
     }
-.galaxy-bg-container {
+.physics-bg-container {
     position: fixed;
     inset: 0;
     z-index: -1;
     background: radial-gradient(circle at center, #1a2a44 0%, #070e1b 100%);
     overflow: hidden
     }
-.galaxy-base {
+.physics-base {
     position: absolute;
     inset: -5%;
     background-image: url(https://lh3.googleusercontent.com/aida/ADBb0uik3eX0X8fyN2Ad-YPrXBouCbHfLcMo4duhVdBl8NC6QxAH8PfR-ryBQqByniN_wiLxK_fgoENYu3N_NRgANzRkh3qcxr9OcEXngGdZFUN2aMotH9YKzWc5VMdg83itB-UWKb5xWqaNN9Gh9VIm6WHaFkr0HkQCDUKKDc7rcAfD_SYgyBHSJmCCcmqeCv1fg5XmqRpofpxbvREcypyF2RB9qgK7VUtpV162eztvGE7NcWPegzzZxJ1QflLbcoZa_nxi6Mlg-Sfb);
@@ -163,8 +163,8 @@
 </head>
 <body class="bg-surface relative min-h-screen">
 <!-- Dynamic 3D Environment Background -->
-<div class="galaxy-bg-container">
-<div class="galaxy-base"></div>
+<div class="physics-bg-container">
+<div class="physics-base"></div>
 <!-- Procedural Particles Layer -->
 <div class="star-layer">
 <div class="floating-particle" style="--top: 80%; --left: 10%; --size: 2px; --duration: 15s;"></div>
@@ -199,7 +199,7 @@
 <header class="fixed top-0 left-0 right-0 z-50 flex justify-center items-center pointer-events-none">
 <nav class="rounded-full mt-6 mx-auto max-w-fit px-8 py-3 border border-white/10 bg-slate-900/40 backdrop-blur-xl shadow-[0_0_30px_rgba(0,0,0,0.5)] flex items-center gap-8 pointer-events-auto">
 <div class="text-2xl font-black tracking-widest text-cyan-400 drop-shadow-[0_0_10px_rgba(0,255,255,0.5)] font-['Space_Grotesk']">
-                Cosmic Gesture
+                Physics Gesture
             </div>
 <div class="flex gap-6 items-center border-l border-white/10 pl-8">
 <a class="text-cyan-400 drop-shadow-[0_0_8px_rgba(0,255,255,0.6)] font-bold font-['Space_Grotesk'] text-sm uppercase tracking-tighter hover:scale-105 transition-all duration-300" href="#">Main Stage</a>
@@ -221,7 +221,7 @@
 <div class="px-4 mb-12 flex flex-col items-center group-hover:items-start group-hover:px-8">
 <div class="flex items-center gap-4 mb-6">
 <div class="w-12 h-12 flex-shrink-0 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 border-2 border-primary overflow-hidden shadow-[0_0_15px_rgba(0,255,255,0.3)]">
-<img alt="Cosmic Pilot Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY2RmOXatU_ufc3rmpPitqs3T1lpB6d5CnXxDtBGUgvJVL-6oyu_3MW4CrLNKON70X_Z6yUJWSoWKoA1M4xnQ8hL2OoqI2hCR30qHEy_tt3PzKKHW-CO1_wQa-Hv49Dt7mu3aHQNmAEP0Svjaf4Ol45si54TOCGbXGWjmIfhDBhyKDHwLZNNR6cWngUrmy7nvBY443NLzirpCg6s-t02QNj0jOLNe7rokWqjqsFeI9s4a9PSPnFBrHcnAOu_9K0hAOv16qpH70gTc"/>
+<img alt="Physics Pilot Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY2RmOXatU_ufc3rmpPitqs3T1lpB6d5CnXxDtBGUgvJVL-6oyu_3MW4CrLNKON70X_Z6yUJWSoWKoA1M4xnQ8hL2OoqI2hCR30qHEy_tt3PzKKHW-CO1_wQa-Hv49Dt7mu3aHQNmAEP0Svjaf4Ol45si54TOCGbXGWjmIfhDBhyKDHwLZNNR6cWngUrmy7nvBY443NLzirpCg6s-t02QNj0jOLNe7rokWqjqsFeI9s4a9PSPnFBrHcnAOu_9K0hAOv16qpH70gTc"/>
 </div>
 <div class="hidden group-hover:block whitespace-nowrap">
 <h3 class="font-headline font-black text-primary text-sm tracking-widest">Observer-01</h3>
@@ -239,7 +239,7 @@
 </a>
 <a class="text-slate-400 px-6 py-4 flex items-center gap-4 group-hover:px-8 hover:bg-white/5 hover:text-white transition-all" href="#">
 <span class="material-symbols-outlined">public</span>
-<span class="font-headline font-bold text-xs tracking-widest uppercase hidden group-hover:inline">Galaxy Map</span>
+<span class="font-headline font-bold text-xs tracking-widest uppercase hidden group-hover:inline">System Map</span>
 </a>
 <a class="text-slate-400 px-6 py-4 flex items-center gap-4 group-hover:px-8 hover:bg-white/5 hover:text-white transition-all" href="#">
 <span class="material-symbols-outlined">auto_awesome</span>
@@ -256,7 +256,7 @@
 <!-- Right Panel: Scores -->
 <div class="fixed right-8 top-32 w-72 glass-panel bg-slate-900/30 border border-white/10 rounded-lg p-6 shadow-2xl z-30 transition-all hover:bg-slate-900/50">
 <h2 class="font-headline font-black text-xl text-white uppercase tracking-tighter mb-6 border-b border-white/10 pb-4">
-                Star Bits <span class="text-secondary drop-shadow-[0_0_5px_rgba(252,220,0,0.5)]">Collected</span>
+                Energy Particles <span class="text-secondary drop-shadow-[0_0_5px_rgba(252,220,0,0.5)]">Collected</span>
 </h2>
 <div class="space-y-6">
 <!-- Player 1 -->
@@ -335,22 +335,22 @@
 <!-- Centered UI -->
 <div class="z-10 flex flex-col items-center text-center max-w-2xl px-4 pointer-events-none mb-48">
 <h1 class="font-headline font-black text-6xl text-white uppercase tracking-tighter mb-4 drop-shadow-2xl">
-                Ready to <span class="text-primary italic">Launch?</span>
+                Ready to <span class="text-primary italic">Explore?</span>
 </h1>
 <p class="text-white/80 font-medium leading-relaxed max-w-md drop-shadow-lg">
-                Pinch your thumb and index finger to collect Star Bits drifting in the void. Calibrate your sensors for maximum precision.
+                Pinch your thumb and index finger to collect energy particles drifting in the void. Calibrate your sensors for maximum precision.
             </p>
 </div>
 </main>
 <!-- Footer Shell -->
 <footer class="fixed bottom-4 right-8 z-50 flex gap-6 items-center">
 <div class="text-[10px] uppercase tracking-widest text-slate-300 font-bold font-sans drop-shadow-md">
-            © 2124 Celestial Observer Systems
+            © 2124 Physics Game Systems
         </div>
 <div class="h-4 w-px bg-white/20"></div>
 <div class="flex gap-6">
 <a class="text-[10px] uppercase tracking-widest font-sans text-slate-200 hover:text-yellow-400 transition-colors drop-shadow-md" href="#">Privacy Protocol</a>
-<a class="text-[10px] uppercase tracking-widest font-sans text-slate-200 hover:text-yellow-400 transition-colors drop-shadow-md" href="#">Star Charts</a>
+<a class="text-[10px] uppercase tracking-widest font-sans text-slate-200 hover:text-yellow-400 transition-colors drop-shadow-md" href="#">System Charts</a>
 <a class="text-[10px] uppercase tracking-widest font-sans text-slate-200 hover:text-yellow-400 transition-colors drop-shadow-md" href="#">Support</a>
 </div>
 </footer>
